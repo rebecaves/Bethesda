@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="SUMINISTRO" alias="SUMINISTRO" created="2023-09-14T13:58:56" modified="2023-09-14T14:54:49" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys>
+    <foreignKey id="TheID_TIPO_SUMINISTRO" parentTableSchema="dbo" parentTableName="TIPO_SUMINISTRO" x="354" y="20">
+      <foreignKeyColumn columnName="ID_TIPO_SUMINISTRO" parentColumnName="ID_TIPO_SUMINISTRO" />
+    </foreignKey>
+  </foreignKeys>
+  <columns>
+    <column name="ID_SUMINISTRO" fieldName="IDSuministro" label="Id Suministro" />
+    <column name="ID_TIPO_SUMINISTRO" fieldName="IDTipoSuministro" label="Id Tipo Suministro" aliasColumnName="DESCRIPCION" aliasForeignKey="TheID_TIPO_SUMINISTRO" />
+    <column name="DESCRIPCION" fieldName="TheidTipoSuministrodescripcion" label="IDTIPOSUMINISTRO Descripcion" foreignKey="TheID_TIPO_SUMINISTRO" />
+    <column name="DESCRIPCION" fieldName="Descripcion" label="Descripcion" />
+  </columns>
+</dataModel>

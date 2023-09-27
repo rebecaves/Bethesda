@@ -1,0 +1,208 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataController name="HistorialMedicoDetalle1" conflictDetection="overwriteChanges" label="Historial Medico Detalle1" xmlns="urn:schemas-codeontime-com:data-aquarium">
+  <commands>
+    <command id="command1" type="Text">
+      <text><![CDATA[
+select
+	"HISTORIAL_MEDICO_DETALLE1"."ID_HISTORIAL_DETALLE" "IDHistorialDetalle"
+	,"HISTORIAL_MEDICO_DETALLE1"."ID_HISTORIAL" "IDHistorial"
+	,"TheID_HISTORIAL"."FECHA_CREACION" "TheidHistorialfechaCreacion"
+	,"TheID_HISTORIALID_PACIENTE"."NOMBRE" "TheidHistorialidPacientenombre"
+	,"TheID_HISTORIALID_PACIENTEID_ACCESO"."DESCRIPCION" "TheidHistorialidPacienteidAccesodescripcion"
+	,"TheID_HISTORIALID_PACIENTEID_GENERO"."DESCRIPCION" "TheidHistorialidPacienteidGenerodescripcion"
+	,"TheID_HISTORIALID_PACIENTEID_TIPO_PACIENTE"."DESCRIPCION" "TheidHistorialidPacienteidTipoPacientedescripcion"
+	,"TheID_HISTORIALID_PACIENTEID_TUR"."DESCRIPCION" "TheidHistorialidPacienteidTurdescripcion"
+	,"HISTORIAL_MEDICO_DETALLE1"."ID_ENFERMEDAD" "IDEnfermedad"
+	,"TheID_ENFERMEDAD"."DESCRIPCION" "TheidEnfermedaddescripcion"
+	,"HISTORIAL_MEDICO_DETALLE1"."ID_ALERGIA_COMPLICACION" "IDAlergiaComplicacion"
+	,"TheID_ALERGIA_COMPLICACION"."DESCRIPCION" "TheidAlergiaComplicaciondescripcion"
+	,"HISTORIAL_MEDICO_DETALLE1"."ID_TIPO_MEDICAMENTO" "IDTipoMedicamento"
+	,"TheID_TIPO_MEDICAMENTO"."DESCRIPCION" "TheidTipoMedicamentodescripcion"
+	,"HISTORIAL_MEDICO_DETALLE1"."ID_SUMINISTRO" "IDSuministro"
+	,"TheID_SUMINISTRO"."DESCRIPCION" "TheidSuministrodescripcion"
+	,"TheID_SUMINISTROID_TIPO_SUMINISTRO"."DESCRIPCION" "TheidSuministroidTipoSuministrodescripcion"
+	,"HISTORIAL_MEDICO_DETALLE1"."DESCRIPCION" "Descripcion"
+	,"HISTORIAL_MEDICO_DETALLE1"."FECHA_INICIO" "FechaInicio"
+	,"HISTORIAL_MEDICO_DETALLE1"."FECHA_FIN" "FechaFin"
+from "dbo"."HISTORIAL_MEDICO_DETALLE1" "HISTORIAL_MEDICO_DETALLE1"
+	left join "dbo"."HISTORIA_MEDICO1" "TheID_HISTORIAL" on "HISTORIAL_MEDICO_DETALLE1"."ID_HISTORIAL" = "TheID_HISTORIAL"."ID_HISTORIAL"
+	left join "dbo"."PACIENTE" "TheID_HISTORIALID_PACIENTE" on "TheID_HISTORIAL"."ID_PACIENTE" = "TheID_HISTORIALID_PACIENTE"."ID_PACIENTE"
+	left join "dbo"."ACCESO_VASCULAR" "TheID_HISTORIALID_PACIENTEID_ACCESO" on "TheID_HISTORIALID_PACIENTE"."ID_ACCESO" = "TheID_HISTORIALID_PACIENTEID_ACCESO"."ID_ACCESO"
+	left join "dbo"."GENERO" "TheID_HISTORIALID_PACIENTEID_GENERO" on "TheID_HISTORIALID_PACIENTE"."ID_GENERO" = "TheID_HISTORIALID_PACIENTEID_GENERO"."ID_GENERO"
+	left join "dbo"."MUNICIPIO" "TheID_HISTORIALID_PACIENTEID_TIPO_PACIENTE" on "TheID_HISTORIALID_PACIENTE"."ID_TIPO_PACIENTE" = "TheID_HISTORIALID_PACIENTEID_TIPO_PACIENTE"."ID_MUNICIPIO"
+	left join "dbo"."TURNOS" "TheID_HISTORIALID_PACIENTEID_TUR" on "TheID_HISTORIALID_PACIENTE"."ID_TURNO" = "TheID_HISTORIALID_PACIENTEID_TUR"."ID_TURNO"
+	left join "dbo"."ENFERMEDAD" "TheID_ENFERMEDAD" on "HISTORIAL_MEDICO_DETALLE1"."ID_ENFERMEDAD" = "TheID_ENFERMEDAD"."ID_ENFERMEDAD"
+	left join "dbo"."ALERGIA_COMPLICACION" "TheID_ALERGIA_COMPLICACION" on "HISTORIAL_MEDICO_DETALLE1"."ID_ALERGIA_COMPLICACION" = "TheID_ALERGIA_COMPLICACION"."ID_ALERGIA_COMPLICACION"
+	left join "dbo"."TIPO_MEDICAMENTO" "TheID_TIPO_MEDICAMENTO" on "HISTORIAL_MEDICO_DETALLE1"."ID_TIPO_MEDICAMENTO" = "TheID_TIPO_MEDICAMENTO"."ID_TIPO_MEDICAMENTO"
+	left join "dbo"."SUMINISTROS" "TheID_SUMINISTRO" on "HISTORIAL_MEDICO_DETALLE1"."ID_SUMINISTRO" = "TheID_SUMINISTRO"."ID_SUMINISTRO"
+	left join "dbo"."TIPO_SUMINISTRO" "TheID_SUMINISTROID_TIPO_SUMINISTRO" on "TheID_SUMINISTRO"."ID_TIPO_SUMINISTRO" = "TheID_SUMINISTROID_TIPO_SUMINISTRO"."ID_TIPO_SUMINISTRO"
+]]></text>
+    </command>
+    <command id="ID_HISTORIAL_DETALLEIdentityCommand" type="Text" event="Inserted">
+      <text><![CDATA[select @@identity]]></text>
+      <output>
+        <fieldOutput fieldName="IDHistorialDetalle" />
+      </output>
+    </command>
+  </commands>
+  <fields>
+    <field name="IDHistorialDetalle" type="Int32" allowNulls="false" isPrimaryKey="true" label="Id Historial Detalle" readOnly="true" />
+    <field name="IDHistorial" type="Int32" allowNulls="false" label="Id Historial" showInSummary="true">
+      <items style="Lookup" dataController="HistoriaMedico1" newDataView="createForm1" dataValueField="IDHistorial" dataTextField="FechaCreacion" copy="TheidHistorialidPacientenombre=PacienteNombre, " />
+    </field>
+    <field name="TheidHistorialfechaCreacion" type="DateTime" readOnly="true" label="IDHISTORIAL Fecha Creacion" />
+    <field name="TheidHistorialidPacientenombre" type="String" readOnly="true" label="IDHISTORIALIDPACIENTE Nombre" length="150" />
+    <field name="TheidHistorialidPacienteidAccesodescripcion" type="String" readOnly="true" label="IDHISTORIALIDPACIENTEIDACCESO Descripcion" length="50" />
+    <field name="TheidHistorialidPacienteidGenerodescripcion" type="String" readOnly="true" label="IDHISTORIALIDPACIENTEIDGENERO Descripcion" length="20" />
+    <field name="TheidHistorialidPacienteidTipoPacientedescripcion" type="String" readOnly="true" label="IDHISTORIALIDPACIENTEIDTIPOPACIENTE Descripcion" length="50" />
+    <field name="TheidHistorialidPacienteidTurdescripcion" type="String" readOnly="true" label="IDHISTORIALIDPACIENTEIDTUR Descripcion" length="50" />
+    <field name="IDEnfermedad" type="Int32" label="Id Enfermedad" showInSummary="true">
+      <items style="Lookup" dataController="Enfermedad" newDataView="createForm1" dataValueField="IDEnfermedad" dataTextField="Descripcion" />
+    </field>
+    <field name="TheidEnfermedaddescripcion" type="String" readOnly="true" label="Padecimiento" length="50" />
+    <field name="IDAlergiaComplicacion" type="Int32" label="Id Alergia Complicacion" showInSummary="true">
+      <items style="Lookup" dataController="AlergiaComplicacion" newDataView="createForm1" dataValueField="IDAlergiaComplicacion" dataTextField="Descripcion" />
+    </field>
+    <field name="TheidAlergiaComplicaciondescripcion" type="String" readOnly="true" label="Alergia/Complicacion" length="450" />
+    <field name="IDTipoMedicamento" type="Int32" label="Id Tipo Medicamento" showInSummary="true">
+      <items style="Lookup" dataController="TipoMedicamento" newDataView="createForm1" dataValueField="IDTipoMedicamento" dataTextField="Descripcion" />
+    </field>
+    <field name="TheidTipoMedicamentodescripcion" type="String" readOnly="true" label="Tipo de Medicamento" length="50" />
+    <field name="IDSuministro" type="Int32" allowNulls="false" label="Id Suministro" showInSummary="true">
+      <items style="Lookup" dataController="Suministros" newDataView="createForm1" dataValueField="IDSuministro" dataTextField="TipoSuministroDescripcion" copy="TheidSuministroidTipoSuministrodescripcion=TipoSuministroDescripcion" />
+    </field>
+    <field name="TheidSuministrodescripcion" type="String" readOnly="true" label="Suministro" length="50" />
+    <field name="TheidSuministroidTipoSuministrodescripcion" type="String" readOnly="true" label="IDSUMINISTROIDTIPOSUMINISTRO Descripcion" length="50" />
+    <field name="Descripcion" type="String" allowNulls="false" label="Descripcion" length="350" />
+    <field name="FechaInicio" type="DateTime" allowNulls="false" label="Fecha Inicio" />
+    <field name="FechaFin" type="DateTime" label="Fecha Fin" />
+  </fields>
+  <views>
+    <view id="grid1" type="Grid" commandId="command1" label="Historial Medico Detalle1">
+      <headerText>$DefaultGridViewDescription</headerText>
+      <dataFields>
+        <dataField fieldName="IDHistorial" aliasFieldName="TheidHistorialfechaCreacion" />
+        <dataField fieldName="TheidHistorialidPacientenombre" />
+        <dataField fieldName="TheidHistorialidPacienteidAccesodescripcion" columns="50" />
+        <dataField fieldName="TheidHistorialidPacienteidGenerodescripcion" columns="20" />
+        <dataField fieldName="TheidHistorialidPacienteidTipoPacientedescripcion" columns="50" />
+        <dataField fieldName="TheidHistorialidPacienteidTurdescripcion" columns="50" />
+        <dataField fieldName="IDEnfermedad" aliasFieldName="TheidEnfermedaddescripcion" />
+        <dataField fieldName="IDAlergiaComplicacion" aliasFieldName="TheidAlergiaComplicaciondescripcion" />
+        <dataField fieldName="IDTipoMedicamento" aliasFieldName="TheidTipoMedicamentodescripcion" />
+        <dataField fieldName="IDSuministro" aliasFieldName="TheidSuministrodescripcion" />
+        <dataField fieldName="TheidSuministroidTipoSuministrodescripcion" columns="50" />
+        <dataField fieldName="Descripcion" />
+        <dataField fieldName="FechaInicio" columns="10" />
+        <dataField fieldName="FechaFin" columns="10" />
+      </dataFields>
+    </view>
+    <view id="editForm1" type="Form" commandId="command1" label="Review Historial Medico Detalle1">
+      <headerText>$DefaultEditViewDescription</headerText>
+      <categories>
+        <category id="c1" headerText="Historial Medico Detalle1" flow="NewColumn">
+          <description><![CDATA[$DefaultEditDescription]]></description>
+          <dataFields>
+            <dataField fieldName="IDHistorial" aliasFieldName="TheidHistorialfechaCreacion" />
+            <dataField fieldName="TheidHistorialidPacientenombre" />
+            <dataField fieldName="TheidHistorialidPacienteidAccesodescripcion" columns="50" />
+            <dataField fieldName="TheidHistorialidPacienteidGenerodescripcion" columns="20" />
+            <dataField fieldName="TheidHistorialidPacienteidTipoPacientedescripcion" columns="50" />
+            <dataField fieldName="TheidHistorialidPacienteidTurdescripcion" columns="50" />
+            <dataField fieldName="IDEnfermedad" aliasFieldName="TheidEnfermedaddescripcion" />
+            <dataField fieldName="IDAlergiaComplicacion" aliasFieldName="TheidAlergiaComplicaciondescripcion" />
+            <dataField fieldName="IDTipoMedicamento" aliasFieldName="TheidTipoMedicamentodescripcion" />
+            <dataField fieldName="IDSuministro" aliasFieldName="TheidSuministrodescripcion" />
+            <dataField fieldName="TheidSuministroidTipoSuministrodescripcion" columns="50" />
+            <dataField fieldName="Descripcion" />
+            <dataField fieldName="FechaInicio" columns="10" />
+            <dataField fieldName="FechaFin" columns="10" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+    <view id="createForm1" type="Form" commandId="command1" label="New Historial Medico Detalle1">
+      <headerText>$DefaultCreateViewDescription</headerText>
+      <categories>
+        <category id="c1" flow="NewColumn">
+          <description><![CDATA[$DefaultNewDescription]]></description>
+          <dataFields>
+            <dataField fieldName="IDHistorial" aliasFieldName="TheidHistorialfechaCreacion" />
+            <dataField fieldName="TheidHistorialidPacientenombre" />
+            <dataField fieldName="TheidHistorialidPacienteidAccesodescripcion" columns="50" />
+            <dataField fieldName="TheidHistorialidPacienteidGenerodescripcion" columns="20" />
+            <dataField fieldName="TheidHistorialidPacienteidTipoPacientedescripcion" columns="50" />
+            <dataField fieldName="TheidHistorialidPacienteidTurdescripcion" columns="50" />
+            <dataField fieldName="IDEnfermedad" aliasFieldName="TheidEnfermedaddescripcion" />
+            <dataField fieldName="IDAlergiaComplicacion" aliasFieldName="TheidAlergiaComplicaciondescripcion" />
+            <dataField fieldName="IDTipoMedicamento" aliasFieldName="TheidTipoMedicamentodescripcion" />
+            <dataField fieldName="IDSuministro" aliasFieldName="TheidSuministrodescripcion" />
+            <dataField fieldName="TheidSuministroidTipoSuministrodescripcion" columns="50" />
+            <dataField fieldName="Descripcion" />
+            <dataField fieldName="FechaInicio" columns="10" />
+            <dataField fieldName="FechaFin" columns="10" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+  </views>
+  <actions>
+    <actionGroup id="ag1" scope="Grid">
+      <action id="a1" commandName="Select" commandArgument="editForm1" />
+      <action id="a2" commandName="Edit" />
+      <action id="a3" commandName="Delete" />
+      <action id="a6" />
+      <action id="a7" commandName="New" commandArgument="grid1" />
+      <action id="a8" commandName="Duplicate" commandArgument="createForm1" />
+    </actionGroup>
+    <actionGroup id="ag2" scope="Form">
+      <action id="a1" commandName="Edit" />
+      <action id="a2" commandName="Delete" />
+      <action id="a3" commandName="Cancel" />
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" commandArgument="Save" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a6" whenLastCommandName="New" commandName="Insert" commandArgument="Save" />
+      <action id="a7" whenLastCommandName="New" commandName="Insert" commandArgument="SaveAndNew" />
+      <action id="a8" whenLastCommandName="New" commandName="Cancel" />
+      <action id="a9" whenLastCommandName="Duplicate" commandName="Insert" />
+      <action id="a10" whenLastCommandName="Duplicate" commandName="Cancel" />
+      <action id="a13" whenLastCommandName="Insert" whenLastCommandArgument="Save" whenView="createForm1" commandName="Select" commandArgument="editForm1" whenClientScript="this.hasDetails()" />
+      <action id="a14" whenLastCommandName="Insert" whenLastCommandArgument="SaveAndNew" commandName="New" commandArgument="createForm1" />
+    </actionGroup>
+    <actionGroup id="ag3" scope="ActionBar" headerText="New" flat="true">
+      <action id="a1" commandName="New" commandArgument="createForm1" cssClass="NewIcon" />
+    </actionGroup>
+    <actionGroup id="ag4" scope="ActionBar" headerText="Edit/Delete" flat="true">
+      <action id="a1" whenKeySelected="true" commandName="Edit" commandArgument="editForm1" cssClass="EditIcon" whenView="grid1" />
+      <action id="a2" whenKeySelected="true" commandName="Delete" cssClass="DeleteIcon" whenView="grid1" />
+    </actionGroup>
+    <actionGroup id="ag5" scope="ActionBar" headerText="Actions">
+      <action id="a1" commandName="ExportCsv" />
+      <action id="a2" />
+      <action id="a3" commandName="ExportRowset" />
+      <action id="a4" commandName="ExportRss" />
+      <action id="a5" />
+      <action id="a6" commandName="Import" commandArgument="createForm1" />
+      <action id="a7" commandName="DataSheet" />
+      <action id="a8" commandName="Grid" />
+    </actionGroup>
+    <actionGroup id="ag6" scope="ActionBar" headerText="Record">
+      <action id="a1" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a2" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a3" whenLastCommandName="New" commandName="Insert" />
+      <action id="a4" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+    <actionGroup id="ag7" scope="ActionBar" headerText="Report">
+      <action id="a1" commandName="ReportAsPdf" />
+      <action id="a2" commandName="ReportAsImage" />
+      <action id="a3" commandName="ReportAsExcel" />
+      <action id="a4" commandName="ReportAsWord" />
+    </actionGroup>
+    <actionGroup id="ag8" scope="Row">
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a6" whenLastCommandName="New" commandName="Insert" />
+      <action id="a7" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+  </actions>
+</dataController>

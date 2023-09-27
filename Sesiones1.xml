@@ -1,0 +1,177 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataController name="Sesiones1" conflictDetection="overwriteChanges" label="Sesiones1" xmlns="urn:schemas-codeontime-com:data-aquarium">
+  <commands>
+    <command id="command1" type="Text">
+      <text><![CDATA[
+select
+	"SESIONES"."ID_SESION" "IDSesion"
+	,"SESIONES"."ID_PACIENTE" "IDPaciente"
+	,"TheID_PACIENTE"."NOMBRE" "TheidPacientenombre"
+	,"TheID_PACIENTE"."ID_PACIENTE" "TheidPacienteIDPaciente"
+	,"TheID_PACIENTE"."APELLIDO" "TheidPacienteApellido"
+	,"TheID_PACIENTEID_ACCESO"."DESCRIPCION" "TheidPacienteidAccesodescripcion"
+	,"TheID_PACIENTEID_GENERO"."DESCRIPCION" "TheidPacienteidGenerodescripcion"
+	,"TheID_PACIENTEID_MUNICIPIO"."DESCRIPCION" "TheidPacienteidMunicipiodescripcion"
+	,"TheID_PACIENTEID_MUNICIPIOID_DEPARTAMENTO"."DESCRIPCION" "TheidPacienteidMunicipioidDepartamentodescripcion"
+	,"TheID_PACIENTEID_TIPO_PACIENTE"."DESCRIPCION" "TheidPacienteidTipoPacientedescripcion"
+	,"TheID_PACIENTEID_TUR"."DESCRIPCION" "TheidPacienteidTurdescripcion"
+	,"SESIONES"."PESO" "Peso"
+	,"SESIONES"."ESTATURA" "Estatura"
+	,"SESIONES"."FECHAHORA_INICIOSESION" "FechahoraIniciosesion"
+	,"SESIONES"."FECHAHORA_FINSESION" "FechahoraFinsesion"
+from "dbo"."SESIONES" "SESIONES"
+	left join "dbo"."PACIENTE" "TheID_PACIENTE" on "SESIONES"."ID_PACIENTE" = "TheID_PACIENTE"."ID_PACIENTE"
+	left join "dbo"."ACCESO_VASCULAR" "TheID_PACIENTEID_ACCESO" on "TheID_PACIENTE"."ID_ACCESO" = "TheID_PACIENTEID_ACCESO"."ID_ACCESO"
+	left join "dbo"."GENERO" "TheID_PACIENTEID_GENERO" on "TheID_PACIENTE"."ID_GENERO" = "TheID_PACIENTEID_GENERO"."ID_GENERO"
+	left join "dbo"."MUNICIPIO" "TheID_PACIENTEID_MUNICIPIO" on "TheID_PACIENTE"."ID_MUNICIPIO" = "TheID_PACIENTEID_MUNICIPIO"."ID_MUNICIPIO"
+	left join "dbo"."DEPARTAMENTO" "TheID_PACIENTEID_MUNICIPIOID_DEPARTAMENTO" on "TheID_PACIENTEID_MUNICIPIO"."ID_DEPARTAMENTO" = "TheID_PACIENTEID_MUNICIPIOID_DEPARTAMENTO"."ID_DEPARTAMENTO"
+	left join "dbo"."TIPO_PACIENTE" "TheID_PACIENTEID_TIPO_PACIENTE" on "TheID_PACIENTE"."ID_TIPO_PACIENTE" = "TheID_PACIENTEID_TIPO_PACIENTE"."ID_TIPO_PACIENTE"
+	left join "dbo"."TURNOS" "TheID_PACIENTEID_TUR" on "TheID_PACIENTE"."ID_TURNO" = "TheID_PACIENTEID_TUR"."ID_TURNO"
+]]></text>
+    </command>
+    <command id="ID_SESIONIdentityCommand" type="Text" event="Inserted">
+      <text><![CDATA[select @@identity]]></text>
+      <output>
+        <fieldOutput fieldName="IDSesion" />
+      </output>
+    </command>
+  </commands>
+  <fields>
+    <field name="IDSesion" type="Int32" allowNulls="false" isPrimaryKey="true" label="Id Sesion" readOnly="true" />
+    <field name="IDPaciente" type="Int32" allowNulls="false" label="Id Paciente" showInSummary="true">
+      <items style="Lookup" dataController="Paciente" newDataView="createForm1" dataTextField="IDPaciente" copy="TheidPacienteIDPaciente=IDPaciente, TheidPacienteApellido=Apellido, TheidPacienteidAccesodescripcion=TheidAccesodescripcion, TheidPacienteidGenerodescripcion=TheidGenerodescripcion, TheidPacienteidMunicipiodescripcion=TheidMunicipiodescripcion, TheidPacienteidMunicipioidDepartamentodescripcion=TheidMunicipioidDepartamentodescripcion, TheidPacienteidTipoPacientedescripcion=TheidTipoPacientedescripcion, TheidPacienteidTurdescripcion=IDTurdescripcion" />
+    </field>
+    <field name="TheidPacientenombre" type="String" readOnly="true" label="IDPACIENTE Nombre" length="150" />
+    <field name="TheidPacienteIDPaciente" type="Int32" label="Theid Paciente ID Paciente" readOnly="true" />
+    <field name="TheidPacienteApellido" type="String" readOnly="true" label="Theid Paciente Apellido" length="150" />
+    <field name="TheidPacienteidAccesodescripcion" type="String" readOnly="true" label="IDPACIENTEIDACCESO Descripcion" length="50" />
+    <field name="TheidPacienteidGenerodescripcion" type="String" readOnly="true" label="IDPACIENTEIDGENERO Descripcion" length="20" />
+    <field name="TheidPacienteidMunicipiodescripcion" type="String" readOnly="true" label="IDPACIENTEIDMUNICIPIO Descripcion" length="50" />
+    <field name="TheidPacienteidMunicipioidDepartamentodescripcion" type="String" readOnly="true" label="IDPACIENTEIDMUNICIPIOIDDEPARTAMENTO Descripcion" length="50" />
+    <field name="TheidPacienteidTipoPacientedescripcion" type="String" readOnly="true" label="IDPACIENTEIDTIPOPACIENTE Descripcion" length="50" />
+    <field name="TheidPacienteidTurdescripcion" type="String" readOnly="true" label="IDPACIENTEIDTUR Descripcion" length="50" />
+    <field name="Peso" type="String" allowNulls="false" label="Peso" length="50" showInSummary="true" />
+    <field name="Estatura" type="String" allowNulls="false" label="Estatura" length="50" showInSummary="true" />
+    <field name="FechahoraIniciosesion" type="DateTime" allowNulls="false" dataFormatString="g" label="Fechahora Iniciosesion" showInSummary="true" />
+    <field name="FechahoraFinsesion" type="DateTime" dataFormatString="g" label="Fechahora Finsesion" showInSummary="true" />
+  </fields>
+  <views>
+    <view id="grid1" type="Grid" commandId="command1" label="Sesiones1">
+      <headerText>$DefaultGridViewDescription</headerText>
+      <dataFields>
+        <dataField fieldName="IDPaciente" aliasFieldName="TheidPacientenombre" />
+        <dataField fieldName="TheidPacienteIDPaciente" columns="15" />
+        <dataField fieldName="TheidPacienteApellido" />
+        <dataField fieldName="TheidPacienteidAccesodescripcion" columns="50" />
+        <dataField fieldName="TheidPacienteidGenerodescripcion" columns="20" />
+        <dataField fieldName="TheidPacienteidMunicipiodescripcion" columns="50" />
+        <dataField fieldName="TheidPacienteidMunicipioidDepartamentodescripcion" columns="50" />
+        <dataField fieldName="TheidPacienteidTipoPacientedescripcion" columns="50" />
+        <dataField fieldName="TheidPacienteidTurdescripcion" columns="50" />
+        <dataField fieldName="Peso" columns="50" />
+        <dataField fieldName="Estatura" columns="50" />
+        <dataField fieldName="FechahoraIniciosesion" columns="20" />
+        <dataField fieldName="FechahoraFinsesion" columns="20" />
+      </dataFields>
+    </view>
+    <view id="editForm1" type="Form" commandId="command1" label="Review Sesiones1">
+      <headerText>$DefaultEditViewDescription</headerText>
+      <categories>
+        <category id="c1" headerText="Sesiones1" flow="NewColumn">
+          <description><![CDATA[$DefaultEditDescription]]></description>
+          <dataFields>
+            <dataField fieldName="IDPaciente" aliasFieldName="TheidPacientenombre" />
+            <dataField fieldName="TheidPacienteIDPaciente" columns="15" />
+            <dataField fieldName="TheidPacienteApellido" />
+            <dataField fieldName="TheidPacienteidAccesodescripcion" columns="50" />
+            <dataField fieldName="TheidPacienteidGenerodescripcion" columns="20" />
+            <dataField fieldName="TheidPacienteidMunicipiodescripcion" columns="50" />
+            <dataField fieldName="TheidPacienteidMunicipioidDepartamentodescripcion" columns="50" />
+            <dataField fieldName="TheidPacienteidTipoPacientedescripcion" columns="50" />
+            <dataField fieldName="TheidPacienteidTurdescripcion" columns="50" />
+            <dataField fieldName="Peso" columns="50" />
+            <dataField fieldName="Estatura" columns="50" />
+            <dataField fieldName="FechahoraIniciosesion" columns="20" />
+            <dataField fieldName="FechahoraFinsesion" columns="20" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+    <view id="createForm1" type="Form" commandId="command1" label="New Sesiones1">
+      <headerText>$DefaultCreateViewDescription</headerText>
+      <categories>
+        <category id="c1" flow="NewColumn">
+          <description><![CDATA[$DefaultNewDescription]]></description>
+          <dataFields>
+            <dataField fieldName="IDPaciente" aliasFieldName="IDPaciente" />
+            <dataField fieldName="TheidPacientenombre" columns="15" />
+            <dataField fieldName="TheidPacienteApellido" />
+            <dataField fieldName="Peso" columns="50" />
+            <dataField fieldName="Estatura" columns="50" />
+            <dataField fieldName="FechahoraIniciosesion" columns="20" />
+            <dataField fieldName="FechahoraFinsesion" columns="20" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+  </views>
+  <actions>
+    <actionGroup id="ag1" scope="Grid">
+      <action id="a1" commandName="Select" commandArgument="editForm1" />
+      <action id="a2" commandName="Edit" />
+      <action id="a3" commandName="Delete" />
+      <action id="a6" />
+      <action id="a7" commandName="New" commandArgument="grid1" />
+      <action id="a8" commandName="Duplicate" commandArgument="createForm1" />
+    </actionGroup>
+    <actionGroup id="ag2" scope="Form">
+      <action id="a1" commandName="Edit" />
+      <action id="a2" commandName="Delete" />
+      <action id="a3" commandName="Cancel" />
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" commandArgument="Save" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a6" whenLastCommandName="New" commandName="Insert" commandArgument="Save" />
+      <action id="a7" whenLastCommandName="New" commandName="Insert" commandArgument="SaveAndNew" />
+      <action id="a8" whenLastCommandName="New" commandName="Cancel" />
+      <action id="a9" whenLastCommandName="Duplicate" commandName="Insert" />
+      <action id="a10" whenLastCommandName="Duplicate" commandName="Cancel" />
+      <action id="a13" whenLastCommandName="Insert" whenLastCommandArgument="Save" whenView="createForm1" commandName="Select" commandArgument="editForm1" whenClientScript="this.hasDetails()" />
+      <action id="a14" whenLastCommandName="Insert" whenLastCommandArgument="SaveAndNew" commandName="New" commandArgument="createForm1" />
+    </actionGroup>
+    <actionGroup id="ag3" scope="ActionBar" headerText="New" flat="true">
+      <action id="a1" commandName="New" commandArgument="createForm1" cssClass="NewIcon" />
+    </actionGroup>
+    <actionGroup id="ag4" scope="ActionBar" headerText="Edit/Delete" flat="true">
+      <action id="a1" whenKeySelected="true" commandName="Edit" commandArgument="editForm1" cssClass="EditIcon" whenView="grid1" />
+      <action id="a2" whenKeySelected="true" commandName="Delete" cssClass="DeleteIcon" whenView="grid1" />
+    </actionGroup>
+    <actionGroup id="ag5" scope="ActionBar" headerText="Actions">
+      <action id="a1" commandName="ExportCsv" />
+      <action id="a2" />
+      <action id="a3" commandName="ExportRowset" />
+      <action id="a4" commandName="ExportRss" />
+      <action id="a5" />
+      <action id="a6" commandName="Import" commandArgument="createForm1" />
+      <action id="a7" commandName="DataSheet" />
+      <action id="a8" commandName="Grid" />
+    </actionGroup>
+    <actionGroup id="ag6" scope="ActionBar" headerText="Record">
+      <action id="a1" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a2" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a3" whenLastCommandName="New" commandName="Insert" />
+      <action id="a4" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+    <actionGroup id="ag7" scope="ActionBar" headerText="Report">
+      <action id="a1" commandName="ReportAsPdf" />
+      <action id="a2" commandName="ReportAsImage" />
+      <action id="a3" commandName="ReportAsExcel" />
+      <action id="a4" commandName="ReportAsWord" />
+    </actionGroup>
+    <actionGroup id="ag8" scope="Row">
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a6" whenLastCommandName="New" commandName="Insert" />
+      <action id="a7" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+  </actions>
+</dataController>

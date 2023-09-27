@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="COLABORADOR" alias="COLABORADOR" created="2023-09-14T13:58:24" modified="2023-09-14T14:55:02" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys>
+    <foreignKey id="TheID_PUESTO" parentTableSchema="dbo" parentTableName="PUESTO" x="337" y="20">
+      <foreignKeyColumn columnName="ID_PUESTO" parentColumnName="ID_PUESTO" />
+    </foreignKey>
+  </foreignKeys>
+  <columns>
+    <column name="ID_COLABORADOR" fieldName="IDColaborador" label="Id Colaborador" />
+    <column name="ID_PUESTO" fieldName="IDPuesto" label="Id Puesto" aliasColumnName="DESCRIPCION" aliasForeignKey="TheID_PUESTO" />
+    <column name="DESCRIPCION" fieldName="TheidPuestodescripcion" label="IDPUESTO Descripcion" foreignKey="TheID_PUESTO" />
+    <column name="NOMBRE" fieldName="Nombre" label="Nombre" />
+    <column name="APELLIDO" fieldName="Apellido" label="Apellido" />
+  </columns>
+</dataModel>

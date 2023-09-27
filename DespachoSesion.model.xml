@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="DESPACHO_SESION" alias="DESPACHO_SESION" created="2023-09-14T13:58:41" modified="2023-09-14T16:04:02" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys>
+    <foreignKey id="ID_TUR" parentTableSchema="dbo" parentTableName="TURNOS" x="364" y="20">
+      <foreignKeyColumn columnName="ID_TURNO" parentColumnName="ID_TURNO" />
+    </foreignKey>
+    <foreignKey id="TheID_COLABORADOR" parentTableSchema="dbo" parentTableName="COLABORADOR" x="365" y="240">
+      <foreignKeyColumn columnName="ID_COLABORADOR" parentColumnName="ID_COLABORADOR" />
+    </foreignKey>
+    <foreignKey id="TheID_COLABORADORID_PUESTO" parentTableSchema="dbo" parentTableName="PUESTO" baseForeignKey="TheID_COLABORADOR" x="681" y="20">
+      <foreignKeyColumn columnName="ID_PUESTO" parentColumnName="ID_PUESTO" />
+    </foreignKey>
+    <foreignKey id="MEDICAMENTO" parentTableSchema="dbo" parentTableName="MEDICAMENTO" x="367" y="139">
+      <foreignKeyColumn columnName="ID_MEDICAMENTO" parentColumnName="ID_MEDICAMENTO" />
+    </foreignKey>
+  </foreignKeys>
+  <columns>
+    <column name="ID_DESPACHO" fieldName="IDDespacho" label="Id Despacho" />
+    <column name="ID_TURNO" fieldName="IDTurno" label="Id Turno" aliasColumnName="DESCRIPCION" aliasForeignKey="ID_TUR" />
+    <column name="DESCRIPCION" fieldName="IDTurdescripcion" label="Id Tur Descripcion" foreignKey="ID_TUR" />
+    <column name="ID_MEDICAMENTO" fieldName="IDMedicamento" label="Id Medicamento" aliasColumnName="DESCRIPCION" aliasForeignKey="MEDICAMENTO" />
+    <column name="DESCRIPCION" fieldName="MedicamentoDescripcion" label="Medicamento Descripcion" foreignKey="MEDICAMENTO" />
+    <column name="ID_COLABORADOR" fieldName="IDColaborador" label="Id Colaborador" aliasColumnName="NOMBRE" aliasForeignKey="TheID_COLABORADOR" />
+    <column name="NOMBRE" fieldName="TheidColaboradornombre" label="IDCOLABORADOR Nombre" foreignKey="TheID_COLABORADOR" />
+    <column name="APELLIDO" fieldName="TheidColaboradorApellido" label="Theid Colaborador Apellido" foreignKey="TheID_COLABORADOR" />
+    <column name="DESCRIPCION" fieldName="TheidColaboradoridPuestodescripcion" label="IDCOLABORADORIDPUESTO Descripcion" foreignKey="TheID_COLABORADORID_PUESTO" />
+    <column name="CANTIDAD" fieldName="Cantidad" label="Cantidad" />
+    <column name="FECHA_HORA" fieldName="FechaHora" label="Fecha Hora" format="g" />
+  </columns>
+</dataModel>

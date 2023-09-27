@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataController name="HistoriaMedico1" conflictDetection="overwriteChanges" label="Historia Medico1" xmlns="urn:schemas-codeontime-com:data-aquarium">
+  <commands>
+    <command id="command1" type="Text">
+      <text><![CDATA[
+select
+	"HISTORIA_MEDICO1"."ID_HISTORIAL" "IDHistorial"
+	,"HISTORIA_MEDICO1"."ID_PACIENTE" "IDPaciente"
+	,"PACIENTE"."ID_PACIENTE" "PacienteIDPaciente"
+	,"PACIENTE"."NOMBRE" "PacienteNombre"
+	,"PACIENTE"."APELLIDO" "PacienteApellido"
+	,"HISTORIA_MEDICO1"."FECHA_CREACION" "FechaCreacion"
+from "dbo"."HISTORIA_MEDICO1" "HISTORIA_MEDICO1"
+	left join "dbo"."PACIENTE" "PACIENTE" on "HISTORIA_MEDICO1"."ID_PACIENTE" = "PACIENTE"."ID_PACIENTE"
+]]></text>
+    </command>
+    <command id="ID_HISTORIALIdentityCommand" type="Text" event="Inserted">
+      <text><![CDATA[select @@identity]]></text>
+      <output>
+        <fieldOutput fieldName="IDHistorial" />
+      </output>
+    </command>
+  </commands>
+  <fields>
+    <field name="IDHistorial" type="Int32" allowNulls="false" isPrimaryKey="true" label="Código Historial" readOnly="true" />
+    <field name="IDPaciente" type="Int32" allowNulls="false" label="Id Paciente" showInSummary="true">
+      <items style="Lookup" dataController="Paciente1" newDataView="createForm1" dataValueField="IDPaciente" dataTextField="IDPaciente" copy="PacienteNombre=Nombre, PacienteApellido=Apellido" />
+    </field>
+    <field name="PacienteIDPaciente" type="Int32" label="Código Paciente" readOnly="true" />
+    <field name="PacienteNombre" type="String" readOnly="true" label="Paciente Nombre" length="150" />
+    <field name="PacienteApellido" type="String" readOnly="true" label="Paciente Apellido" length="150" />
+    <field name="FechaCreacion" type="DateTime" dataFormatString="g" label="Fecha Creacion" showInSummary="true" />
+    <field name="HistorialMedicoDetalle" type="DataView" label="Historial Medico Detalle">
+      <dataView controller="HistorialMedicoDetalle" view="grid1" filterFields="IDHistorial" />
+    </field>
+  </fields>
+  <views>
+    <view id="grid1" type="Grid" commandId="command1" label="Historial Medico">
+      <headerText />
+      <dataFields>
+        <dataField fieldName="IDHistorial" columns="15" />
+        <dataField fieldName="IDPaciente" aliasFieldName="PacienteIDPaciente" />
+        <dataField fieldName="PacienteNombre" />
+        <dataField fieldName="PacienteApellido" />
+        <dataField fieldName="FechaCreacion" columns="20" />
+      </dataFields>
+    </view>
+    <view id="editForm1" type="Form" commandId="command1" label="Editar Registro">
+      <headerText />
+      <categories>
+        <category id="c1" headerText="Historia Medico" wrap="true" flow="NewColumn">
+          <description />
+          <dataFields>
+            <dataField fieldName="IDPaciente" aliasFieldName="PacienteIDPaciente" />
+            <dataField fieldName="PacienteNombre" />
+            <dataField fieldName="PacienteApellido" />
+            <dataField fieldName="FechaCreacion" columns="20" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+    <view id="createForm1" type="Form" commandId="command1" label="Nuevo Registro">
+      <headerText />
+      <categories>
+        <category id="c1" wrap="true" flow="NewColumn">
+          <description />
+          <dataFields>
+            <dataField fieldName="IDPaciente" aliasFieldName="PacienteIDPaciente" />
+            <dataField fieldName="PacienteNombre" />
+            <dataField fieldName="PacienteApellido" />
+            <dataField fieldName="FechaCreacion" columns="20" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+  </views>
+  <actions>
+    <actionGroup id="ag1" scope="Grid">
+      <action id="a1" commandName="Select" commandArgument="editForm1" />
+      <action id="a2" commandName="Edit" />
+      <action id="a3" commandName="Delete" />
+      <action id="a6" />
+      <action id="a7" commandName="New" commandArgument="grid1" />
+      <action id="a8" commandName="Duplicate" commandArgument="createForm1" />
+    </actionGroup>
+    <actionGroup id="ag2" scope="Form">
+      <action id="a1" commandName="Edit" />
+      <action id="a2" commandName="Delete" />
+      <action id="a3" commandName="Cancel" />
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" commandArgument="Save" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a6" whenLastCommandName="New" commandName="Insert" commandArgument="Save" />
+      <action id="a7" whenLastCommandName="New" commandName="Insert" commandArgument="SaveAndNew" />
+      <action id="a8" whenLastCommandName="New" commandName="Cancel" />
+      <action id="a9" whenLastCommandName="Duplicate" commandName="Insert" />
+      <action id="a10" whenLastCommandName="Duplicate" commandName="Cancel" />
+      <action id="a13" whenLastCommandName="Insert" whenLastCommandArgument="Save" whenView="createForm1" commandName="Select" commandArgument="editForm1" whenClientScript="this.hasDetails()" />
+      <action id="a14" whenLastCommandName="Insert" whenLastCommandArgument="SaveAndNew" commandName="New" commandArgument="createForm1" />
+    </actionGroup>
+    <actionGroup id="ag3" scope="ActionBar" headerText="New" flat="true">
+      <action id="a1" commandName="New" commandArgument="createForm1" cssClass="NewIcon" />
+    </actionGroup>
+    <actionGroup id="ag4" scope="ActionBar" headerText="Edit/Delete" flat="true">
+      <action id="a1" whenKeySelected="true" commandName="Edit" commandArgument="editForm1" cssClass="EditIcon" whenView="grid1" />
+      <action id="a2" whenKeySelected="true" commandName="Delete" cssClass="DeleteIcon" whenView="grid1" />
+    </actionGroup>
+    <actionGroup id="ag6" scope="ActionBar" headerText="Record">
+      <action id="a1" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a2" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a3" whenLastCommandName="New" commandName="Insert" />
+      <action id="a4" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+    <actionGroup id="ag8" scope="Row">
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a6" whenLastCommandName="New" commandName="Insert" />
+      <action id="a7" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+  </actions>
+</dataController>

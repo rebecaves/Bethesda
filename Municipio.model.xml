@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="MUNICIPIO" alias="MUNICIPIO" created="2023-09-12T11:22:15" modified="2023-09-13T10:53:06" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys>
+    <foreignKey id="TheID_DEPARTAMENTO" parentTableSchema="dbo" parentTableName="DEPARTAMENTO" x="345" y="20">
+      <foreignKeyColumn columnName="ID_DEPARTAMENTO" parentColumnName="ID_DEPARTAMENTO" />
+    </foreignKey>
+  </foreignKeys>
+  <columns>
+    <column name="ID_MUNICIPIO" fieldName="IDMunicipio" label="Id Municipio" />
+    <column name="ID_DEPARTAMENTO" fieldName="IDDepartamento" label="Id Departamento" aliasColumnName="DESCRIPCION" aliasForeignKey="TheID_DEPARTAMENTO" />
+    <column name="DESCRIPCION" fieldName="TheidDepartamentodescripcion" label="IDDEPARTAMENTO Descripcion" foreignKey="TheID_DEPARTAMENTO" />
+    <column name="DESCRIPCION" fieldName="Descripcion" label="Descripcion" />
+  </columns>
+</dataModel>

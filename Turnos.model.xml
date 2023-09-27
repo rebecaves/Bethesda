@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="TURNOS" alias="TURNOS" created="2023-09-05T14:07:24" modified="2023-09-05T14:07:25" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys />
+  <columns>
+    <column name="ID_TURNO" fieldName="IDTurno" label="Id Turno" />
+    <column name="DESCRIPCION" fieldName="Descripcion" label="Descripcion" />
+    <column name="HORARIO" fieldName="Horario" label="Horario" format="g" />
+  </columns>
+</dataModel>

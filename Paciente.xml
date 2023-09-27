@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataController name="Paciente" conflictDetection="overwriteChanges" label="Paciente" xmlns="urn:schemas-codeontime-com:data-aquarium">
+  <commands>
+    <command id="command1" type="Text">
+      <text><![CDATA[
+select
+	"PACIENTE"."ID_PACIENTE" "IDPaciente"
+	,"PACIENTE"."ID_GENERO" "IDGenero"
+	,"TheID_GENERO"."DESCRIPCION" "TheidGenerodescripcion"
+	,"PACIENTE"."ID_TIPO_PACIENTE" "IDTipoPaciente"
+	,"TheID_TIPO_PACIENTE"."DESCRIPCION" "TheidTipoPacientedescripcion"
+	,"PACIENTE"."ID_MUNICIPIO" "IDMunicipio"
+	,"TheID_MUNICIPIO"."DESCRIPCION" "TheidMunicipiodescripcion"
+	,"TheID_MUNICIPIOID_DEPARTAMENTO"."DESCRIPCION" "TheidMunicipioidDepartamentodescripcion"
+	,"PACIENTE"."ID_TURNO" "IDTurno"
+	,"ID_TUR"."DESCRIPCION" "IDTurdescripcion"
+	,"PACIENTE"."ID_ACCESO" "IDAcceso"
+	,"TheID_ACCESO"."DESCRIPCION" "TheidAccesodescripcion"
+	,"PACIENTE"."NOMBRE" "Nombre"
+	,"PACIENTE"."APELLIDO" "Apellido"
+	,"PACIENTE"."FECHA_NACIMIENTO" "FechaNacimiento"
+	,"PACIENTE"."EDAD" "Edad"
+	,"PACIENTE"."NO_IDENTIFICACION" "NoIdentificacion"
+	,"PACIENTE"."DIRECCION_RESIDENCIIA" "DireccionResidenciia"
+	,"PACIENTE"."TELEFONO" "Telefono"
+	,"PACIENTE"."TEL_EMERGENCIA" "TelEmergencia"
+	,"PACIENTE"."FECHA_ADMISION" "FechaAdmision"
+	,"PACIENTE"."ESTATURA" "Estatura"
+	,"PACIENTE"."ID_ESTADO" "IDEstado"
+	,"ESTADO"."DESCRIPCION" "EstadoDescripcion"
+from "dbo"."PACIENTE" "PACIENTE"
+	left join "dbo"."GENERO" "TheID_GENERO" on "PACIENTE"."ID_GENERO" = "TheID_GENERO"."ID_GENERO"
+	left join "dbo"."TIPO_PACIENTE" "TheID_TIPO_PACIENTE" on "PACIENTE"."ID_TIPO_PACIENTE" = "TheID_TIPO_PACIENTE"."ID_TIPO_PACIENTE"
+	left join "dbo"."MUNICIPIO" "TheID_MUNICIPIO" on "PACIENTE"."ID_MUNICIPIO" = "TheID_MUNICIPIO"."ID_MUNICIPIO"
+	left join "dbo"."DEPARTAMENTO" "TheID_MUNICIPIOID_DEPARTAMENTO" on "TheID_MUNICIPIO"."ID_DEPARTAMENTO" = "TheID_MUNICIPIOID_DEPARTAMENTO"."ID_DEPARTAMENTO"
+	left join "dbo"."TURNOS" "ID_TUR" on "PACIENTE"."ID_TURNO" = "ID_TUR"."ID_TURNO"
+	left join "dbo"."ACCESO_VASCULAR" "TheID_ACCESO" on "PACIENTE"."ID_ACCESO" = "TheID_ACCESO"."ID_ACCESO"
+	left join "dbo"."ESTADO" "ESTADO" on "PACIENTE"."ID_ESTADO" = "ESTADO"."ID_ESTADO"
+]]></text>
+    </command>
+    <command id="ID_PACIENTEIdentityCommand" type="Text" event="Inserted">
+      <text><![CDATA[select @@identity]]></text>
+      <output>
+        <fieldOutput fieldName="IDPaciente" />
+      </output>
+    </command>
+  </commands>
+  <fields>
+    <field name="IDPaciente" type="Int32" allowNulls="false" isPrimaryKey="true" label="Id Paciente" readOnly="true" />
+    <field name="Nombre" type="String" allowNulls="false" label="Nombre" length="150" />
+    <field name="Apellido" type="String" allowNulls="false" label="Apellido" length="150" />
+    <field name="FechaNacimiento" type="DateTime" allowNulls="false" label="Fecha Nacimiento" />
+    <field name="Edad" type="Int32" allowNulls="false" label="Edad" />
+    <field name="NoIdentificacion" type="String" allowNulls="false" label="No Identificacion" length="13" />
+    <field name="DireccionResidenciia" type="String" allowNulls="false" label="Direccion" length="150" />
+    <field name="Telefono" type="String" allowNulls="false" label="Telefono" length="9" />
+    <field name="TelEmergencia" type="String" label="Tel Emergencia" length="9" />
+    <field name="FechaAdmision" type="DateTime" allowNulls="false" label="Fecha Admision" />
+    <field name="IDGenero" type="Int32" allowNulls="false" label="Id Genero" showInSummary="true">
+      <items style="RadioButtonList" dataController="Genero" dataValueField="IDGenero" dataTextField="Descripcion" />
+    </field>
+    <field name="TheidGenerodescripcion" type="String" readOnly="true" label="Género" length="20" />
+    <field name="IDTipoPaciente" type="Int32" allowNulls="false" label="Id Tipo Paciente" showInSummary="true">
+      <items style="RadioButtonList" dataController="TipoPaciente" dataValueField="IDTipoPaciente" dataTextField="Descripcion" />
+    </field>
+    <field name="TheidTipoPacientedescripcion" type="String" readOnly="true" label="Tipo Paciente" length="50" />
+    <field name="IDMunicipio" type="Int32" allowNulls="false" label="Id Municipio" showInSummary="true">
+      <items style="DropDownList" dataController="Municipio" newDataView="createForm1" dataValueField="IDMunicipio" dataTextField="Descripcion" copy="TheidMunicipioidDepartamentodescripcion=TheidDepartamentodescripcion" />
+    </field>
+    <field name="TheidMunicipiodescripcion" type="String" readOnly="true" label="Municipio" length="50" />
+    <field name="TheidMunicipioidDepartamentodescripcion" type="String" readOnly="true" label="IDMUNICIPIOIDDEPARTAMENTO Descripcion" length="50" />
+    <field name="IDTurno" type="Int32" allowNulls="false" label="Id Turno" showInSummary="true">
+      <items style="RadioButtonList" dataController="Turnos" dataValueField="IDTurno" dataTextField="Descripcion" />
+    </field>
+    <field name="IDTurdescripcion" type="String" readOnly="true" label="Turno" length="50" />
+    <field name="IDAcceso" type="Int32" allowNulls="false" label="Id Acceso" showInSummary="true">
+      <items style="RadioButtonList" dataController="AccesoVascular" dataValueField="IDAcceso" dataTextField="Descripcion" />
+    </field>
+    <field name="TheidAccesodescripcion" type="String" readOnly="true" label="Acceso Vascular" length="50" />
+    <field name="Estatura" type="String" label="Estatura (cm)" length="50" />
+    <field name="IDEstado" type="Int32" allowNulls="false" label="ID Estado">
+      <items style="RadioButtonList" dataController="Estado" dataValueField="IDEstado" dataTextField="Descripcion" />
+    </field>
+    <field name="EstadoDescripcion" type="String" readOnly="true" label="Estado Descripcion" length="50" />
+  </fields>
+  <views>
+    <view id="grid1" type="Grid" commandId="command1" label="Paciente">
+      <headerText />
+      <dataFields>
+        <dataField fieldName="Nombre" />
+        <dataField fieldName="Apellido" />
+        <dataField fieldName="FechaNacimiento" columns="10" />
+        <dataField fieldName="Edad" columns="15" />
+        <dataField fieldName="NoIdentificacion" columns="13" />
+        <dataField fieldName="DireccionResidenciia" />
+        <dataField fieldName="Telefono" columns="9" />
+        <dataField fieldName="TelEmergencia" columns="9" />
+        <dataField fieldName="FechaAdmision" columns="10" />
+        <dataField fieldName="IDGenero" aliasFieldName="TheidGenerodescripcion" />
+        <dataField fieldName="IDTipoPaciente" aliasFieldName="TheidTipoPacientedescripcion" />
+        <dataField fieldName="IDMunicipio" aliasFieldName="TheidMunicipiodescripcion" />
+        <dataField fieldName="IDTurno" aliasFieldName="IDTurdescripcion" />
+        <dataField fieldName="IDAcceso" aliasFieldName="TheidAccesodescripcion" />
+        <dataField fieldName="Estatura" columns="50" />
+        <dataField fieldName="IDEstado" aliasFieldName="EstadoDescripcion" />
+      </dataFields>
+    </view>
+    <view id="editForm1" type="Form" commandId="command1" label="Editar Registro">
+      <headerText />
+      <categories>
+        <category id="c1" headerText="Paciente" wrap="true" flow="NewColumn">
+          <description />
+          <dataFields>
+            <dataField fieldName="Nombre" />
+            <dataField fieldName="Apellido" />
+            <dataField fieldName="FechaNacimiento" columns="10" />
+            <dataField fieldName="Edad" columns="15" />
+            <dataField fieldName="NoIdentificacion" columns="13" />
+            <dataField fieldName="DireccionResidenciia" />
+            <dataField fieldName="Telefono" columns="9" />
+            <dataField fieldName="TelEmergencia" columns="9" />
+            <dataField fieldName="FechaAdmision" columns="10" />
+            <dataField fieldName="IDGenero" aliasFieldName="TheidGenerodescripcion" />
+            <dataField fieldName="IDTipoPaciente" aliasFieldName="TheidTipoPacientedescripcion" />
+            <dataField fieldName="IDMunicipio" aliasFieldName="TheidMunicipiodescripcion" />
+            <dataField fieldName="IDTurno" aliasFieldName="IDTurdescripcion" />
+            <dataField fieldName="IDAcceso" aliasFieldName="TheidAccesodescripcion" />
+            <dataField fieldName="Estatura" columns="50" />
+            <dataField fieldName="IDEstado" aliasFieldName="EstadoDescripcion" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+    <view id="createForm1" type="Form" commandId="command1" label="Nuevo Registro">
+      <headerText />
+      <categories>
+        <category id="c1" wrap="true" flow="NewColumn">
+          <description />
+          <dataFields>
+            <dataField fieldName="Nombre" />
+            <dataField fieldName="Apellido" />
+            <dataField fieldName="FechaNacimiento" columns="10" />
+            <dataField fieldName="Edad" columns="15" />
+            <dataField fieldName="NoIdentificacion" columns="13" />
+            <dataField fieldName="DireccionResidenciia" />
+            <dataField fieldName="Telefono" columns="9" />
+            <dataField fieldName="TelEmergencia" columns="9" />
+            <dataField fieldName="FechaAdmision" columns="10" />
+            <dataField fieldName="IDGenero" aliasFieldName="TheidGenerodescripcion" />
+            <dataField fieldName="IDTipoPaciente" aliasFieldName="TheidTipoPacientedescripcion" />
+            <dataField fieldName="IDMunicipio" aliasFieldName="TheidMunicipiodescripcion" />
+            <dataField fieldName="IDTurno" aliasFieldName="IDTurdescripcion" />
+            <dataField fieldName="IDAcceso" aliasFieldName="TheidAccesodescripcion" />
+            <dataField fieldName="Estatura" columns="50" />
+            <dataField fieldName="IDEstado" aliasFieldName="EstadoDescripcion" />
+          </dataFields>
+        </category>
+      </categories>
+    </view>
+  </views>
+  <actions>
+    <actionGroup id="ag1" scope="Grid">
+      <action id="a1" commandName="Select" commandArgument="editForm1" />
+      <action id="a2" commandName="Edit" />
+      <action id="a3" commandName="Delete" />
+      <action id="a6" />
+      <action id="a7" commandName="New" commandArgument="grid1" />
+      <action id="a8" commandName="Duplicate" commandArgument="createForm1" />
+    </actionGroup>
+    <actionGroup id="ag2" scope="Form">
+      <action id="a1" commandName="Edit" />
+      <action id="a2" commandName="Delete" />
+      <action id="a3" commandName="Cancel" />
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" commandArgument="Save" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a6" whenLastCommandName="New" commandName="Insert" commandArgument="Save" />
+      <action id="a7" whenLastCommandName="New" commandName="Insert" commandArgument="SaveAndNew" />
+      <action id="a8" whenLastCommandName="New" commandName="Cancel" />
+      <action id="a9" whenLastCommandName="Duplicate" commandName="Insert" />
+      <action id="a10" whenLastCommandName="Duplicate" commandName="Cancel" />
+      <action id="a13" whenLastCommandName="Insert" whenLastCommandArgument="Save" whenView="createForm1" commandName="Select" commandArgument="editForm1" whenClientScript="this.hasDetails()" />
+      <action id="a14" whenLastCommandName="Insert" whenLastCommandArgument="SaveAndNew" commandName="New" commandArgument="createForm1" />
+    </actionGroup>
+    <actionGroup id="ag3" scope="ActionBar" headerText="New" flat="true">
+      <action id="a1" commandName="New" commandArgument="createForm1" cssClass="NewIcon" />
+    </actionGroup>
+    <actionGroup id="ag4" scope="ActionBar" headerText="Edit/Delete" flat="true">
+      <action id="a1" whenKeySelected="true" commandName="Edit" commandArgument="editForm1" cssClass="EditIcon" whenView="grid1" />
+      <action id="a2" whenKeySelected="true" commandName="Delete" cssClass="DeleteIcon" whenView="grid1" />
+    </actionGroup>
+    <actionGroup id="ag6" scope="ActionBar" headerText="Record">
+      <action id="a1" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a2" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a3" whenLastCommandName="New" commandName="Insert" />
+      <action id="a4" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+    <actionGroup id="ag8" scope="Row">
+      <action id="a4" whenLastCommandName="Edit" commandName="Update" />
+      <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
+      <action id="a6" whenLastCommandName="New" commandName="Insert" />
+      <action id="a7" whenLastCommandName="New" commandName="Cancel" />
+    </actionGroup>
+  </actions>
+</dataController>

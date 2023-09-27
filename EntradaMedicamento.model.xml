@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="ENTRADA_MEDICAMENTO" alias="ENTRADA_MEDICAMENTO" created="2023-09-14T13:58:44" modified="2023-09-14T16:09:02" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys>
+    <foreignKey id="MEDICAMENTO" parentTableSchema="dbo" parentTableName="MEDICAMENTO" x="461" y="74">
+      <foreignKeyColumn columnName="ID_MEDICAMENTO" parentColumnName="ID_MEDICAMENTO" />
+    </foreignKey>
+  </foreignKeys>
+  <columns>
+    <column name="ID_ENTRADA_MEDICAMENTO" fieldName="IDEntradaMedicamento" label="Id Entrada Medicamento" />
+    <column name="ID_MEDICAMENTO" fieldName="IDMedicamento" label="Id Medicamento" aliasColumnName="DESCRIPCION" aliasForeignKey="MEDICAMENTO" />
+    <column name="DESCRIPCION" fieldName="MedicamentoDescripcion" label="Medicamento Descripcion" foreignKey="MEDICAMENTO" />
+    <column name="FECHA_INGRESO" fieldName="FechaIngreso" label="Fecha Ingreso" />
+    <column name="CANTIDAD_INGRESO" fieldName="CantidadIngreso" label="Cantidad Ingreso" />
+    <column name="FECHA_VENCE" fieldName="FechaVence" label="Fecha Vence" />
+  </columns>
+</dataModel>

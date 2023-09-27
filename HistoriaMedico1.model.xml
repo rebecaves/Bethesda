@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="HISTORIA_MEDICO1" alias="HISTORIA_MEDICO1" created="2023-09-06T11:15:15" modified="2023-09-14T14:55:14" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys>
+    <foreignKey id="PACIENTE" parentTableSchema="dbo" parentTableName="PACIENTE" x="520" y="91">
+      <foreignKeyColumn columnName="ID_PACIENTE" parentColumnName="ID_PACIENTE" />
+    </foreignKey>
+  </foreignKeys>
+  <columns>
+    <column name="ID_HISTORIAL" fieldName="IDHistorial" label="Id Historial" />
+    <column name="ID_PACIENTE" fieldName="IDPaciente" label="Id Paciente" aliasColumnName="ID_PACIENTE" aliasForeignKey="PACIENTE" />
+    <column name="ID_PACIENTE" fieldName="PacienteIDPaciente" label="Paciente ID Paciente" foreignKey="PACIENTE" />
+    <column name="NOMBRE" fieldName="PacienteNombre" label="Paciente Nombre" foreignKey="PACIENTE" />
+    <column name="APELLIDO" fieldName="PacienteApellido" label="Paciente Apellido" foreignKey="PACIENTE" />
+    <column name="FECHA_CREACION" fieldName="FechaCreacion" label="Fecha Creacion" format="g" />
+  </columns>
+</dataModel>

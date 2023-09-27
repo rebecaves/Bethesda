@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="SiteContent" alias="SiteContent" created="2023-09-22T16:39:52" modified="2023-09-22T16:39:54" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys />
+  <columns>
+    <column name="SiteContentID" fieldName="SiteContentID" label="Site Content ID" />
+    <column name="FileName" fieldName="FileName" label="File Name" />
+    <column name="Path" fieldName="Path" label="Path" />
+    <column name="ContentType" fieldName="ContentType" label="Content Type" />
+    <column name="Length" fieldName="Length" label="Length" />
+    <column name="Data" fieldName="Data" label="Data" />
+    <column name="Text" fieldName="Text" label="Text" />
+    <column name="Roles" fieldName="Roles" label="Roles" />
+    <column name="RoleExceptions" fieldName="RoleExceptions" label="Role Exceptions" />
+    <column name="Users" fieldName="Users" label="Users" />
+    <column name="UserExceptions" fieldName="UserExceptions" label="User Exceptions" />
+    <column name="Schedule" fieldName="Schedule" label="Schedule" />
+    <column name="ScheduleExceptions" fieldName="ScheduleExceptions" label="Schedule Exceptions" />
+    <column name="CacheProfile" fieldName="CacheProfile" label="Cache Profile" />
+    <column name="CreatedDate" fieldName="CreatedDate" label="Created Date" format="g" />
+    <column name="ModifiedDate" fieldName="ModifiedDate" label="Modified Date" format="g" />
+  </columns>
+</dataModel>

@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="SALIDA_MEDICAMENTO" alias="SALIDA_MEDICAMENTO" created="2023-09-14T13:58:58" modified="2023-09-14T14:54:52" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys />
+  <columns>
+    <column name="ID_SALIDA_MEDICAMENTO" fieldName="IDSalidaMedicamento" label="Id Salida Medicamento" />
+    <column name="ID_ENTRADA_MEDICAMENTO" fieldName="IDEntradaMedicamento" label="Id Entrada Medicamento" />
+    <column name="FECHA_EGRESO" fieldName="FechaEgreso" label="Fecha Egreso" />
+    <column name="CANTIDAD_EGRESO" fieldName="CantidadEgreso" label="Cantidad Egreso" />
+  </columns>
+</dataModel>

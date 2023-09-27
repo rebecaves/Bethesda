@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="SESION" alias="SESION" created="2023-09-13T15:48:24" modified="2023-09-13T16:26:46" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys>
+    <foreignKey id="TheID_PACIENTE" parentTableSchema="dbo" parentTableName="PACIENTE" x="382" y="20">
+      <foreignKeyColumn columnName="ID_PACIENTE" parentColumnName="ID_PACIENTE" />
+    </foreignKey>
+  </foreignKeys>
+  <columns>
+    <column name="ID_SESION" fieldName="IDSesion" label="Id Sesion" />
+    <column name="ID_PACIENTE" fieldName="IDPaciente" label="Id Paciente" aliasColumnName="ID_PACIENTE" aliasForeignKey="TheID_PACIENTE" />
+    <column name="ID_PACIENTE" fieldName="TheidPacienteIDPaciente" label="Theid Paciente ID Paciente" foreignKey="TheID_PACIENTE" />
+    <column name="NOMBRE" fieldName="TheidPacienteNombre" label="Theid Paciente Nombre" foreignKey="TheID_PACIENTE" />
+    <column name="APELLIDO" fieldName="TheidPacienteApellido" label="Theid Paciente Apellido" foreignKey="TheID_PACIENTE" />
+    <column name="FECHAHORA_INICIOSESION" fieldName="FechahoraIniciosesion" label="Fechahora Iniciosesion" format="g" />
+    <column name="FECHAHORA_FINSESION" fieldName="FechahoraFinsesion" label="Fechahora Finsesion" format="g" />
+    <column name="PESO_INICIAL" fieldName="PesoInicial" label="Peso Inicial" />
+    <column name="PESO_FINAL" fieldName="PesoFinal" label="Peso Final" />
+  </columns>
+</dataModel>

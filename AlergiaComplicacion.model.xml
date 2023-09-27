@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="ALERGIA_COMPLICACION" alias="ALERGIA_COMPLICACION" created="2023-09-05T14:07:04" modified="2023-09-05T14:07:05" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys />
+  <columns>
+    <column name="ID_ALERGIA_COMPLICACION" fieldName="IDAlergiaComplicacion" label="Id Alergia Complicacion" />
+    <column name="DESCRIPCION" fieldName="Descripcion" label="Descripcion" />
+  </columns>
+</dataModel>

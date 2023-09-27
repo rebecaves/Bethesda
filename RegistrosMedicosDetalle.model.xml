@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="REGISTROS_MEDICOS_DETALLE" alias="REGISTROS_MEDICOS_DETALLE" created="2023-09-05T17:36:54" modified="2023-09-05T17:36:56" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys>
+    <foreignKey id="TheID_RECURSO" parentTableSchema="dbo" parentTableName="RECURSOS_MEDICOS" x="353" y="20">
+      <foreignKeyColumn columnName="ID_RECURSO" parentColumnName="ID_RECURSO" />
+    </foreignKey>
+  </foreignKeys>
+  <columns>
+    <column name="ID_RECURSO_DETALLE" fieldName="IDRecursoDetalle" label="Id Recurso Detalle" />
+    <column name="ID_RECURSO" fieldName="IDRecurso" label="Id Recurso" aliasColumnName="DESCRIPCION" aliasForeignKey="TheID_RECURSO" />
+    <column name="DESCRIPCION" fieldName="TheidRecursodescripcion" label="IDRECURSO Descripcion" foreignKey="TheID_RECURSO" />
+    <column name="ID_HISTORIAL_DETALLE" fieldName="IDHistorialDetalle" label="Id Historial Detalle" />
+  </columns>
+</dataModel>

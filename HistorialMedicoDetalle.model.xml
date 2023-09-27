@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="HISTORIAL_MEDICO_DETALLE" alias="HISTORIAL_MEDICO_DETALLE" created="2023-09-06T15:55:18" modified="2023-09-14T16:26:56" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys>
+    <foreignKey id="TheID_HISTORIAL" parentTableSchema="dbo" parentTableName="HISTORIA_MEDICO1" x="394" y="20">
+      <foreignKeyColumn columnName="ID_HISTORIAL" parentColumnName="ID_HISTORIAL" />
+    </foreignKey>
+    <foreignKey id="TheID_ENFERMEDAD" parentTableSchema="dbo" parentTableName="ENFERMEDAD" x="394" y="184">
+      <foreignKeyColumn columnName="ID_ENFERMEDAD" parentColumnName="ID_ENFERMEDAD" />
+    </foreignKey>
+    <foreignKey id="TheID_ALERGIA_COMPLICACION" parentTableSchema="dbo" parentTableName="ALERGIA_COMPLICACION" x="394" y="323">
+      <foreignKeyColumn columnName="ID_ALERGIA_COMPLICACION" parentColumnName="ID_ALERGIA_COMPLICACION" />
+    </foreignKey>
+    <foreignKey id="TheID_TIPO_MEDICAMENTO" parentTableSchema="dbo" parentTableName="TIPO_MEDICAMENTO" x="394" y="481">
+      <foreignKeyColumn columnName="ID_TIPO_MEDICAMENTO" parentColumnName="ID_TIPO_MEDICAMENTO" />
+    </foreignKey>
+    <foreignKey id="TIPO_SEGUIMIENTO" parentTableSchema="dbo" parentTableName="TIPO_SEGUIMIENTO" x="820" y="40">
+      <foreignKeyColumn columnName="ID_TIPO_SEGUIMIENTO" parentColumnName="ID_TIPO_SEGUIMIENTO" />
+    </foreignKey>
+    <foreignKey id="SUMINISTRO" parentTableSchema="dbo" parentTableName="SUMINISTRO" x="822" y="184">
+      <foreignKeyColumn columnName="ID_SUMINISTRO" parentColumnName="ID_SUMINISTRO" />
+    </foreignKey>
+  </foreignKeys>
+  <columns>
+    <column name="ID_HISTORIAL_DETALLE" fieldName="IDHistorialDetalle" label="Id Historial Detalle" />
+    <column name="ID_HISTORIAL" fieldName="IDHistorial" label="Id Historial" aliasColumnName="ID_HISTORIAL" aliasForeignKey="TheID_HISTORIAL" />
+    <column name="ID_HISTORIAL" fieldName="TheidHistorialIDHistorial" label="Theid Historial ID Historial" foreignKey="TheID_HISTORIAL" />
+    <column name="ID_ENFERMEDAD" fieldName="IDEnfermedad" label="Id Enfermedad" aliasColumnName="DESCRIPCION" aliasForeignKey="TheID_ENFERMEDAD" />
+    <column name="DESCRIPCION" fieldName="TheidEnfermedaddescripcion" label="IDENFERMEDAD Descripcion" foreignKey="TheID_ENFERMEDAD" />
+    <column name="ID_ALERGIA_COMPLICACION" fieldName="IDAlergiaComplicacion" label="Id Alergia Complicacion" aliasColumnName="DESCRIPCION" aliasForeignKey="TheID_ALERGIA_COMPLICACION" />
+    <column name="DESCRIPCION" fieldName="TheidAlergiaComplicaciondescripcion" label="IDALERGIACOMPLICACION Descripcion" foreignKey="TheID_ALERGIA_COMPLICACION" />
+    <column name="ID_TIPO_MEDICAMENTO" fieldName="IDTipoMedicamento" label="Id Tipo Medicamento" aliasColumnName="DESCRIPCION" aliasForeignKey="TheID_TIPO_MEDICAMENTO" />
+    <column name="DESCRIPCION" fieldName="TheidTipoMedicamentodescripcion" label="IDTIPOMEDICAMENTO Descripcion" foreignKey="TheID_TIPO_MEDICAMENTO" />
+    <column name="ID_SUMINISTRO" fieldName="IDSuministro" label="Id Suministro" aliasColumnName="DESCRIPCION" aliasForeignKey="SUMINISTRO" />
+    <column name="DESCRIPCION" fieldName="SuministroDescripcion" label="Suministro Descripcion" foreignKey="SUMINISTRO" />
+    <column name="DESCRIPCION" fieldName="Descripcion" label="Descripcion" />
+    <column name="FECHA_INICIO" fieldName="FechaInicio" label="Fecha Inicio" />
+    <column name="FECHA_FIN" fieldName="FechaFin" label="Fecha Fin" />
+    <column name="ID_TIPO_SEGUIMIENTO" fieldName="IDTipoSeguimiento" label="ID Tipo Seguimiento" aliasColumnName="DESCRIPCION" aliasForeignKey="TIPO_SEGUIMIENTO" />
+    <column name="DESCRIPCION" fieldName="TipoSeguimientoDescripcion" label="Tipo Seguimiento Descripcion" foreignKey="TIPO_SEGUIMIENTO" />
+  </columns>
+</dataModel>

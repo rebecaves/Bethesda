@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="INVENTARIO_SUMINISTRO" alias="INVENTARIO_SUMINISTRO" created="2023-09-14T13:58:46" modified="2023-09-14T16:22:05" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys>
+    <foreignKey id="TheID_SUMINISTRO" parentTableSchema="dbo" parentTableName="SUMINISTRO" x="344" y="20">
+      <foreignKeyColumn columnName="ID_SUMINISTRO" parentColumnName="ID_SUMINISTRO" />
+    </foreignKey>
+  </foreignKeys>
+  <columns>
+    <column name="ID_INVENTARIO_SUM" fieldName="IDInventarioSum" label="Id Inventario Sum" />
+    <column name="ID_SUMINISTRO" fieldName="IDSuministro" label="Id Suministro" aliasColumnName="DESCRIPCION" aliasForeignKey="TheID_SUMINISTRO" />
+    <column name="DESCRIPCION" fieldName="TheidSuministrodescripcion" label="IDSUMINISTRO Descripcion" foreignKey="TheID_SUMINISTRO" />
+    <column name="FECHA_INGRESO" fieldName="FechaIngreso" label="Fecha Ingreso" />
+    <column name="CANTIDAD" fieldName="Cantidad" label="Cantidad" />
+  </columns>
+</dataModel>

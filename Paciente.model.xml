@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="dbo" baseTable="PACIENTE" alias="PACIENTE" created="2023-09-13T11:09:46" modified="2023-09-13T16:28:27" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys>
+    <foreignKey id="TheID_GENERO" parentTableSchema="dbo" parentTableName="GENERO" x="375" y="20">
+      <foreignKeyColumn columnName="ID_GENERO" parentColumnName="ID_GENERO" />
+    </foreignKey>
+    <foreignKey id="TheID_TIPO_PACIENTE" parentTableSchema="dbo" parentTableName="TIPO_PACIENTE" x="375" y="160">
+      <foreignKeyColumn columnName="ID_TIPO_PACIENTE" parentColumnName="ID_TIPO_PACIENTE" />
+    </foreignKey>
+    <foreignKey id="TheID_MUNICIPIO" parentTableSchema="dbo" parentTableName="MUNICIPIO" x="376" y="286">
+      <foreignKeyColumn columnName="ID_MUNICIPIO" parentColumnName="ID_MUNICIPIO" />
+    </foreignKey>
+    <foreignKey id="TheID_MUNICIPIOID_DEPARTAMENTO" parentTableSchema="dbo" parentTableName="DEPARTAMENTO" baseForeignKey="TheID_MUNICIPIO" x="700" y="20">
+      <foreignKeyColumn columnName="ID_DEPARTAMENTO" parentColumnName="ID_DEPARTAMENTO" />
+    </foreignKey>
+    <foreignKey id="ID_TUR" parentTableSchema="dbo" parentTableName="TURNOS" x="375" y="463">
+      <foreignKeyColumn columnName="ID_TURNO" parentColumnName="ID_TURNO" />
+    </foreignKey>
+    <foreignKey id="TheID_ACCESO" parentTableSchema="dbo" parentTableName="ACCESO_VASCULAR" x="375" y="626">
+      <foreignKeyColumn columnName="ID_ACCESO" parentColumnName="ID_ACCESO" />
+    </foreignKey>
+    <foreignKey id="ESTADO" parentTableSchema="dbo" parentTableName="ESTADO" x="49" y="489">
+      <foreignKeyColumn columnName="ID_ESTADO" parentColumnName="ID_ESTADO" />
+    </foreignKey>
+  </foreignKeys>
+  <columns>
+    <column name="ID_PACIENTE" fieldName="IDPaciente" label="Id Paciente" />
+    <column name="ID_GENERO" fieldName="IDGenero" label="Id Genero" aliasColumnName="DESCRIPCION" aliasForeignKey="TheID_GENERO" />
+    <column name="DESCRIPCION" fieldName="TheidGenerodescripcion" label="IDGENERO Descripcion" foreignKey="TheID_GENERO" />
+    <column name="ID_TIPO_PACIENTE" fieldName="IDTipoPaciente" label="Id Tipo Paciente" aliasColumnName="DESCRIPCION" aliasForeignKey="TheID_TIPO_PACIENTE" />
+    <column name="DESCRIPCION" fieldName="TheidTipoPacientedescripcion" label="IDTIPOPACIENTE Descripcion" foreignKey="TheID_TIPO_PACIENTE" />
+    <column name="ID_MUNICIPIO" fieldName="IDMunicipio" label="Id Municipio" aliasColumnName="DESCRIPCION" aliasForeignKey="TheID_MUNICIPIO" />
+    <column name="DESCRIPCION" fieldName="TheidMunicipiodescripcion" label="IDMUNICIPIO Descripcion" foreignKey="TheID_MUNICIPIO" />
+    <column name="DESCRIPCION" fieldName="TheidMunicipioidDepartamentodescripcion" label="IDMUNICIPIOIDDEPARTAMENTO Descripcion" foreignKey="TheID_MUNICIPIOID_DEPARTAMENTO" />
+    <column name="ID_TURNO" fieldName="IDTurno" label="Id Turno" aliasColumnName="DESCRIPCION" aliasForeignKey="ID_TUR" />
+    <column name="DESCRIPCION" fieldName="IDTurdescripcion" label="Id Tur Descripcion" foreignKey="ID_TUR" />
+    <column name="ID_ACCESO" fieldName="IDAcceso" label="Id Acceso" aliasColumnName="DESCRIPCION" aliasForeignKey="TheID_ACCESO" />
+    <column name="DESCRIPCION" fieldName="TheidAccesodescripcion" label="IDACCESO Descripcion" foreignKey="TheID_ACCESO" />
+    <column name="NOMBRE" fieldName="Nombre" label="Nombre" />
+    <column name="APELLIDO" fieldName="Apellido" label="Apellido" />
+    <column name="FECHA_NACIMIENTO" fieldName="FechaNacimiento" label="Fecha Nacimiento" />
+    <column name="EDAD" fieldName="Edad" label="Edad" />
+    <column name="NO_IDENTIFICACION" fieldName="NoIdentificacion" label="No Identificacion" />
+    <column name="DIRECCION_RESIDENCIIA" fieldName="DireccionResidenciia" label="Direccion Residenciia" />
+    <column name="TELEFONO" fieldName="Telefono" label="Telefono" />
+    <column name="TEL_EMERGENCIA" fieldName="TelEmergencia" label="Tel Emergencia" />
+    <column name="FECHA_ADMISION" fieldName="FechaAdmision" label="Fecha Admision" />
+    <column name="ESTATURA" fieldName="Estatura" label="Estatura" />
+    <column name="ID_ESTADO" fieldName="IDEstado" label="ID Estado" aliasColumnName="DESCRIPCION" aliasForeignKey="ESTADO" />
+    <column name="DESCRIPCION" fieldName="EstadoDescripcion" label="Estado Descripcion" foreignKey="ESTADO" />
+  </columns>
+</dataModel>
